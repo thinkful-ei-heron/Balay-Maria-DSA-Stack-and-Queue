@@ -34,11 +34,25 @@ function peek(stk) {
 
 }
 
-// function isEmpty() {
-    
+function isEmpty(stk) {
+  if(!stk.top) {
+    return true; 
+  }
+  else {
+    return false; 
+  }
+}
 
-// }
 
+function display(stk) {
+
+  let currStk = stk.top; 
+  while( currStk !== null)  {
+    console.log(currStk.data);
+    currStk = currStk.next; 
+  }
+  return; 
+}
 
 
 
