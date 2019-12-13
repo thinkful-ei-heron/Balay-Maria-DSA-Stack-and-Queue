@@ -30,27 +30,31 @@ class Stack {
 
 function peek(stk) {
 
-    return stk.top
+    return stk.top.data
 
 }
 
-function isEmpty() {
+// function isEmpty() {
     
-}
+// }
 
 
 
 
-function main() {
+// function main() {
 
 let starTrek = new Stack();
     starTrek.push('Kirk')
     starTrek.push('Spock')
     starTrek.push('McCoy')
     starTrek.push('Scotty')
+    // starTrek.pop();
     peek(starTrek);
-}
+// }
 
-console.log(main());
+// console.log(main());
+
+console.log(starTrek)
+
 
 
