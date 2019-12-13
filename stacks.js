@@ -48,26 +48,97 @@ function display(stk) {
 
   let currStk = stk.top; 
   while( currStk !== null)  {
-    console.log(currStk.data);
+    //console.log(currStk.data);
     currStk = currStk.next; 
   }
   return; 
 }
 
+function is_palindrome(s) {
+  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+  // create a stack with the characters of the phrase/word
+  let palindromeStk = new Stack();
 
+  for (let i = 0; i < s.length; i++) {
+    palindromeStk.push(s[i]);
+  }
 
-function main() {
+  let currNode = palindromeStk.top;
+  let reverseStr = '';
 
-  let starTrek = new Stack();
+  while (currNode !== null) {
+    reverseStr = reverseStr + palindromeStk.pop();
+    currNode = currNode.next;
+  }
 
-  starTrek.push('Kirk');
-  starTrek.push('Spock');
-  starTrek.push('McCoy');
-  starTrek.push('Scotty');
-  peek(starTrek);
+  if (s === reverseStr) {
+    return 'true';
+  } else {
+    return 'false';
+  }
+
 }
 
-console.log(main());
+function parenthesis(str) {
+  str = str.replace(/\s+/g, '');
+  let parenthesisStk = new Stack();
+
+  for (let i = 0; i < str.length; i++) {
+    parenthesisStk.push(str[i]);
+  }
+
+  let currNode = parenthesisStk.top;
+  let open = [];
+  let closed = [];
+  let index = 1;
+  
+  while (currNode !== null) {
+    if (currNode.data === '(') {
+      open.push(index);
+    }
+    if (currNode.data === ')') {
+      closed.push(index);
+    }
+    currNode = currNode.next;
+    index++;
+  }
+
+  console.log(closed, 'closed');
+  console.log(open, 'open');
+
+  if (open.length === closed.length) {
+    return true;
+  } else if (closed.length > open.length) {
+    return 'Unmatched closing parenthesis at character number ' + closed.pop();
+  } else {
+    return 'Unmatched open parenthesis at character number ' + open.pop();
+  }
+
+}
+
+console.log(parenthesis('(1 + 2)( + (1 + 2)'));
+
+//console.log(is_palindrome('dad'));
+// console.log(is_palindrome("A man, a plan, a canal: Panama"));
+// console.log(is_palindrome("1001"));
+// console.log(is_palindrome("Tauhida"));
+
+
+
+// function main() {
+
+//   let starTrek = new Stack();
+
+//   starTrek.push('Kirk');
+//   starTrek.push('Spock');
+//   starTrek.push('McCoy');
+//   starTrek.push('Scotty');
+//   peek(starTrek);
+//   isEmpty(starTrek);
+//   display(starTrek);
+// }
+
+// console.log(main());
 
 
 
