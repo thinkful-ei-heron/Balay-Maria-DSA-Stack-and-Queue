@@ -79,44 +79,40 @@ function is_palindrome(s) {
 
 }
 
+function isMatchingPair(char1, char2) {
+  if (char1 === '(' && char2 === ')') {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function parenthesis(str) {
-  str = str.replace(/\s+/g, '');
-  let parenthesisStk = new Stack();
+
+  let openStk = new Stack();
 
   for (let i = 0; i < str.length; i++) {
-    parenthesisStk.push(str[i]);
+    if (str[i] === '(') {
+      openStk.push([str[i], i]);
+    }
+    if (str[i] === ')') {
+      if (isEmpty(openStk)) {
+        return `Unmatched close parenthesis at position ${i}`;
+      } else if (!isMatchingPair(openStk.pop()[0], str[i])) {
+        return `Unmatched close parenthesis at position ${i}`;
+      }
+    }
   }
-
-  let currNode = parenthesisStk.top;
-  let open = [];
-  let closed = [];
-  let index = 1;
   
-  while (currNode !== null) {
-    if (currNode.data === '(') {
-      open.push(index);
-    }
-    if (currNode.data === ')') {
-      closed.push(index);
-    }
-    currNode = currNode.next;
-    index++;
-  }
-
-  console.log(closed, 'closed');
-  console.log(open, 'open');
-
-  if (open.length === closed.length) {
-    return true;
-  } else if (closed.length > open.length) {
-    return 'Unmatched closing parenthesis at character number ' + closed.pop();
+  if (isEmpty(openStk)) {
+    return 'BALANCED!';
   } else {
-    return 'Unmatched open parenthesis at character number ' + open.pop();
+    return `Unmatched open parenthesis at position ${openStk.pop()[1]}`;
   }
 
 }
 
-console.log(parenthesis('(1 + 2)( + (1 + 2)'));
+console.log(parenthesis('(1 + 2) + (1 + 2)'));
 
 //console.log(is_palindrome('dad'));
 // console.log(is_palindrome("A man, a plan, a canal: Panama"));
