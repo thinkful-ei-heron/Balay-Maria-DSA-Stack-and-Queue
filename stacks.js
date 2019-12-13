@@ -18,7 +18,6 @@ class Stack {
     }
     const node = new _Node(data, this.top);
     this.top = node;
-
   }
 
   pop() {
@@ -31,10 +30,33 @@ class Stack {
 
 function peek(stk) {
 
+  return stk.top.data;
+
 }
 
-function isEmpty() {
+// function isEmpty() {
     
+
+// }
+
+
+
+
+function main() {
+
+  let starTrek = new Stack();
+
+  starTrek.push('Kirk');
+  starTrek.push('Spock');
+  starTrek.push('McCoy');
+  starTrek.push('Scotty');
+  peek(starTrek);
 }
+
+console.log(main());
+
+
+
+
 
 
