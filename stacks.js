@@ -34,27 +34,42 @@ function peek(stk) {
 
 }
 
-// function isEmpty() {
-    
-// }
+function isEmpty(stk) {
+    if(!stk.top) {
+        return true 
+    }
+    else {
+        return false 
+    }
+}
+
+function display(stk) {
+
+    let currStk = stk.top 
+    while( currStk !== null)  {
+        console.log(currStk.data)
+        currStk = currStk.next; 
+    }
+    return 
+}
 
 
 
-
-// function main() {
+function main() {
 
 let starTrek = new Stack();
     starTrek.push('Kirk')
     starTrek.push('Spock')
     starTrek.push('McCoy')
     starTrek.push('Scotty')
-    // starTrek.pop();
+    starTrek.pop();
     peek(starTrek);
-// }
+    isEmpty(starTrek);
+    return display(starTrek);
+}
 
-// console.log(main());
+console.log(main());
 
-console.log(starTrek)
 
 
 
