@@ -48,7 +48,7 @@ function display(stk) {
 
   let currStk = stk.top; 
   while( currStk !== null)  {
-    //console.log(currStk.data);
+    console.log(currStk.data);
     currStk = currStk.next; 
   }
   return; 
@@ -112,7 +112,33 @@ function parenthesis(str) {
 
 }
 
-console.log(parenthesis('(1 + 2) + (1 + 2)'));
+function sortStack(stk) {
+  let sorted = new Stack();
+
+  while (!isEmpty(stk)) {
+    let tmp = stk.pop(); 
+    while (!isEmpty(sorted) && tmp > peek(sorted)) {
+      stk.push(sorted.pop());
+    }
+    sorted.push(tmp);
+  }
+  return display(sorted);
+}
+
+function main() {
+  let unsorted = new Stack();
+  unsorted.push(5);
+  unsorted.push(10);
+  unsorted.push(3);
+  unsorted.push(6);
+  unsorted.push(1);
+
+  return sortStack(unsorted);
+}
+
+console.log(main());
+
+//console.log(parenthesis('(1 + 2) + (1 + 2)'));
 
 //console.log(is_palindrome('dad'));
 // console.log(is_palindrome("A man, a plan, a canal: Panama"));
